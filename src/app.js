@@ -19,12 +19,7 @@ const store=Config_store;
     //console.log(state.expenses);
  })*/
 ;
-store.dispatch(add_expense({description:'water bill',amount:4500}));
-store.dispatch(add_expense({description:'gas bill',amount:1000}));
-store.dispatch(add_expense({description:'rent',amount:10900}));
-const state=store.getState();
-const visible_expenses=get_visible_expenses(state.expenses,state.filters);
-console.log(visible_expenses);
+
 const approot=document.getElementById("app");
 const jsx=
 (   <Provider store={store}>
