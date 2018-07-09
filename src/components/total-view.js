@@ -8,7 +8,7 @@ const Expenselist=(props)=>
      const money=numeral(props.total/100).format('$0.00')
      return(
       <div>
-         <h2>Viewing {props.expenses.length} {expense_word} totallling {money}</h2>    
+       {props.expenses.length>0?<h2>Viewing {props.expenses.length} {expense_word} totallling {money}</h2>:<h3>No Expenses</h3>}    
       </div>
     ); 
 };
