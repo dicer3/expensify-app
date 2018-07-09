@@ -65,6 +65,7 @@ console.log(now.format('Do MMM YYYY'));
                            note:this.state.note
                        }
                    )
+                
                 }
      }
      render(){

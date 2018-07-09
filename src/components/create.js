@@ -10,7 +10,8 @@ const Add_Expense_Page=(props)=>
          on_submit={(expense)=>{
               props.dispatch(add_expense(expense)) 
               props.history.push('/');
-         }}   />
+         }}    
+               />
    </div>
 )
 export default  connect()(Add_Expense_Page);
