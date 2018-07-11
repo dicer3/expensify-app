@@ -10,6 +10,7 @@ import {add_expense,edit_expense,remove_expense} from './actions/expenses';
 import {set_text_filter,sort_by_amount,sort_by_date,set_start_date,set_end_date} from './actions/filters';
 import get_visible_expenses from './selectors/expenses';
 import 'react-dates/lib/css/_datepicker.css';
+import './firebase/firebase';
 const store=Config_store;
 /*store.subscribe(()=>
  {  const state=store.getState();
