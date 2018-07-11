@@ -20,7 +20,11 @@ const expense_reducer=(state=expense_default_state,action)=>
               else 
                   return expense;
             })
-        }    
+        }  
+        case 'set_expense':
+        {
+            return action.expenses;
+        }  
         default:
              return state;
         }   

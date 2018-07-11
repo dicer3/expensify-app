@@ -1,7 +1,7 @@
 import database from '../firebase/firebase';
 import uuid from 'uuid';
  const add_expense=(expense1)=>
-  (
+  (  
       {
           type:"add_expense",
           expense1
@@ -19,7 +19,7 @@ import uuid from 'uuid';
           }=expensedata;
           const expense={description,note,amount,createdate}
           database.ref('expense').push(expense).then((ref)=>
-        {
+        {  console.log('hello123');
             dispatch(add_expense(
               {  id: ref.key,
                 ...expense}
@@ -42,4 +42,40 @@ import uuid from 'uuid';
         id,
       }
   )
-  export {add_expense,edit_expense,remove_expense};
+  const start_remove_expense=({id}={})=>
+  {
+     return(dispatch)=>
+     {
+         database.ref(`expense/${id}`).set(null).then(()=>
+         {
+             console.log('got removed',id);
+             dispatch(remove_expense({id}))  
+         })
+     }
+  }
+  export const set_expenses=(expenses)=>
+  (
+      {
+          type: 'set_expense',
+          expenses
+      }
+  )
+ const start_set_expense=()=>
+  {
+      return(dispatch)=>
+      { const expenses2=[];
+       return  database.ref('expense').once('value').then((snapshot)=>
+    {
+        const expenses2=[];
+        snapshot.forEach((child_snapshot)=>
+    {  console.log(child_snapshot.key)
+        expenses2.push(
+       { id:child_snapshot.key,
+        ...child_snapshot.val()})
+    })
+    dispatch(set_expenses(expenses2));       
+     })
+    
+      }
+  }
+  export {add_expense,edit_expense,remove_expense,start_set_expense,start_remove_expense};
