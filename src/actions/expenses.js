@@ -22,8 +22,8 @@ import uuid from 'uuid';
         {  console.log('hello123');
             dispatch(add_expense(
               {  id: ref.key,
-                ...expense}
-            ))
+                ...expense})
+            )
         })
       }
   }
@@ -35,6 +35,18 @@ import uuid from 'uuid';
          updates,
         }   
   )
+  const start_edit_expense=(id,updates)=>
+  {  return(dispatch)=>
+    {
+      database.ref(`expense/${id}`).update(
+          updates
+      ).then(()=>
+      {
+        console.log('uppdated');
+       dispatch(edit_expense(id,updates));
+     })
+    }  
+  }
   const remove_expense=({ id}={} )=>
   (
       {
@@ -78,4 +90,4 @@ import uuid from 'uuid';
     
       }
   }
-  export {add_expense,edit_expense,remove_expense,start_set_expense,start_remove_expense};
+  export {add_expense,edit_expense,start_edit_expense,remove_expense,start_set_expense,start_remove_expense};

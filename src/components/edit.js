@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Expense_form from './expense_form';
-import {edit_expense,start_remove_expense} from '../actions/expenses';
+import {start_edit_expense,start_remove_expense} from '../actions/expenses';
 const Edit_Expense_Page=(props)=>
 { 
    return(    
@@ -10,7 +10,7 @@ const Edit_Expense_Page=(props)=>
          <Expense_form 
          expense={props.expenses}
          on_submit={(expense)=>{
-             props.dispatch(edit_expense(props.expenses.id,expense))
+             props.dispatch(start_edit_expense(props.expenses.id,expense))
              props.history.push('/')
          }}   />
          <button onClick={  (e)=>{
