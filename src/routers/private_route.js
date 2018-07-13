@@ -21,7 +21,7 @@ import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import {history} from './approuter.js';
 import Login from '../components/login_page';
-import Header from '../components/Header';
+import Header from '../components/header';
 
 export const PrivateRoute = ({
   isAuthenticated,
