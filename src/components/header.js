@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 (
     <header>
        <h1>expensify</h1>
-       <NavLink to="/" activeClassName="is_active" exact={true}>dashboard</NavLink>
+       <NavLink to="/dashboard" activeClassName="is_active" exact={true}>dashboard</NavLink>
        <NavLink to="/create" activeClassName="is_active">create page</NavLink>
        <button onClick={start_logout}>logout</button>
     </header>

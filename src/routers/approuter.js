@@ -7,7 +7,8 @@ import Edit_Expense_Page from '../components/edit';
 import Not_found_page from '../components/not_found';
 import Login_Page from '../components/login_page';
 import createHistory from 'history/createBrowserHistory';
-import Privateroute from './private_route'
+import Privateroute1 from './private_route';
+import Publicroute1 from './public_route';
 export const history=createHistory();
 const Approuter=()=>
 (
@@ -15,12 +16,12 @@ const Approuter=()=>
      <div>
     
         <Switch>
-           <Privateroute path="/" component={Login_Page} exact={true} />
-           <Privateroute path="/dashboard" component={Expense_Dashboard_Page}  />
-           <Privateroute path="/create" component={Add_Expense_Page} />
-           <Privateroute path="/edit/:id"  component={Edit_Expense_Page} />
-           <Privateroute path="/help" component={Help_Page} />
-           <Privateroute component={Not_found_page} />
+           <Publicroute1 path="/" component={Login_Page} exact={true} />
+           <Privateroute1 path="/dashboard" component={Expense_Dashboard_Page}  />
+           <Privateroute1 path="/create" component={Add_Expense_Page} />
+           <Privateroute1 path="/edit/:id"  component={Edit_Expense_Page} />
+           <Privateroute1 path="/help" component={Help_Page} />
+           <Privateroute1 component={Not_found_page} />
          </Switch>   
      </div>
    </Router>

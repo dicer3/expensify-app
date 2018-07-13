@@ -9,8 +9,8 @@ import uuid from 'uuid';
   )
   export const start_add_expense=(expensedata={})=>
   {
-      return(dispatch)=>
-      {
+      return(dispatch,get_state)=>
+      {   const uid =get_state().auth.uid;
           const{
             description='',
             note='',
@@ -18,7 +18,7 @@ import uuid from 'uuid';
             createdate=0
           }=expensedata;
           const expense={description,note,amount,createdate}
-          database.ref('expense').push(expense).then((ref)=>
+          database.ref(`users/${uid}/expense`).push(expense).then((ref)=>
         {  console.log('hello123');
             dispatch(add_expense(
               {  id: ref.key,
@@ -36,9 +36,9 @@ import uuid from 'uuid';
         }   
   )
   const start_edit_expense=(id,updates)=>
-  {  return(dispatch)=>
-    {
-      database.ref(`expense/${id}`).update(
+  {  return(dispatch,getstate)=>
+    { const id1=getstate().auth.uid;      
+      database.ref(`users/${id1}/expense/${id}`).update(
           updates
       ).then(()=>
       {
@@ -56,9 +56,9 @@ import uuid from 'uuid';
   )
   const start_remove_expense=({id}={})=>
   {
-     return(dispatch)=>
-     {
-         database.ref(`expense/${id}`).set(null).then(()=>
+     return(dispatch,getstate)=>
+     {  const id1=getstate().auth.uid;
+         database.ref(`users/${id1}/expense/${id}`).set(null).then(()=>
          {
              console.log('got removed',id);
              dispatch(remove_expense({id}))  
@@ -74,9 +74,10 @@ import uuid from 'uuid';
   )
  const start_set_expense=()=>
   {
-      return(dispatch)=>
+      return(dispatch,getstate)=>
       { const expenses2=[];
-       return  database.ref('expense').once('value').then((snapshot)=>
+        const id1=getstate().auth.uid
+       return  database.ref(`users/${id1}/expense`).once('value').then((snapshot)=>
     {
         const expenses2=[];
         snapshot.forEach((child_snapshot)=>
