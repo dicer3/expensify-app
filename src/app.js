@@ -2,13 +2,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import Approuter from './routers/approuter';
+import Approuter,{history} from './routers/approuter';
 import './styles/styles.scss';
 import 'normalize.css/normalize.css';
 import Config_store from './store/config_store.js';
 import {start_set_expense} from './actions/expenses';
-import {set_text_filter,sort_by_amount,sort_by_date,set_start_date,set_end_date} from './actions/filters';
-import get_visible_expenses from './selectors/expenses';
+import {login,logout} from './actions/auth';
 import 'react-dates/lib/css/_datepicker.css';
 import {firebase} from './firebase/firebase';
 
@@ -28,6 +27,16 @@ const jsx=
         <Approuter />
     </Provider>
 )
+let has_render=false;
+const render_app=()=>
+{
+    if(!has_render)
+    {
+        ReactDOM.render(jsx,approot);
+        has_render=true;
+    }
+       
+}
 ReactDOM.render(<p>loading..</p>,approot);
 
 store.dispatch(start_set_expense()).then(()=>
@@ -37,7 +46,22 @@ store.dispatch(start_set_expense()).then(()=>
 firebase.auth().onAuthStateChanged((user)=>
 {
    if(user)
-      console.log('log in');
+      {   
+          store.dispatch(login(user.uid));
+          console.log('login',user.uid);
+          store.dispatch(start_set_expense()).then(()=>
+           {
+             console.log('is this comming here');
+             render_app();
+             if(history.location.pathname==='/')
+                     history.push('/dashboard');
+          })
+      }    
     else
-       console.log('log out');     
+    {
+      store.dispatch(logout());
+      render_app();
+      console.log('logout');
+      history.push('/');
+    }       
 })
