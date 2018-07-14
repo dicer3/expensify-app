@@ -1,0 +1,30 @@
+.button_style
+{
+    color: white;
+    background: $blue;
+    border:none;
+    padding: $m-size $m-size;
+    margin:0;
+    font-weight: 300;
+    font-size: 1.8rem;
+    line-height: 1;
+    display: inline-block;
+    text-align:center;
+    text-decoration: none;
+}
+.button_style:hover
+{
+    background: darken($blue,5);
+}
+.button-link
+{
+    background: none;
+    &:hover{
+        background: none;
+    }
+}
+.button_secondary
+{
+   @extend .button_style; 
+   background: #888888;  
+}

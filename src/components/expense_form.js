@@ -70,12 +70,13 @@ console.log(now.format('Do MMM YYYY'));
      }
      render(){
         return(
-            <div> 
-            {this.state.error && <p>{this.state.error}</p>} 
-            <form onSubmit={this.on_submit}>
-            <input type="text" placeholder="description" autoFocus
+            
+            
+            <form className="form" onSubmit={this.on_submit}>
+            {this.state.error && <p className="form-error">{this.state.error}</p>} 
+            <input className="text-input" type="text" placeholder="description" autoFocus
             value={this.state.description} onChange={this.on_desc_change} />
-            <input type="text" placeholder="amount" value={this.state.amount} onChange={this.on_amount_change} />
+            <input className="text-input" type="text" placeholder="amount" value={this.state.amount} onChange={this.on_amount_change} />
             <SingleDatePicker
               date={this.state.create_at}
               onDateChange={this.on_date_change}
@@ -84,11 +85,11 @@ console.log(now.format('Do MMM YYYY'));
               numberOfMonths={1}
               isOutsideRange={()=> false}
               />
-            <textarea placeholder="add a note for expense(optional)" value={this.state.note} onChange={this.on_text_area_change}  />
-            <button>add expense</button>
+            <textarea className="textarea" placeholder="add a note for expense(optional)" value={this.state.note} onChange={this.on_text_area_change}  />
+            <div>
+                 <button className="button_style">Save Expense</button>
+             </div>     
                 </form>
-                
-            </div>
         )
      }
  }

@@ -6,16 +6,24 @@ const Edit_Expense_Page=(props)=>
 { 
    return(    
    <div>
-         editing the expense with the id of {props.match.params.id};
-         <Expense_form 
-         expense={props.expenses}
-         on_submit={(expense)=>{
+        <div className="page-header">
+            <div className="content-container">
+                <p className="page-header-title">Edit Expense </p>
+           </div> 
+          </div>
+         <div className="content-container">
+             <Expense_form 
+             expense={props.expenses}
+             on_submit={(expense)=>{
              props.dispatch(start_edit_expense(props.expenses.id,expense))
              props.history.push('/')
-         }}   />
-         <button onClick={  (e)=>{
-       props.dispatch(start_remove_expense( { id:props.expenses.id /*props.match.params.id*/ }) ) 
-         props.history.push('/') } } >remove</button>         
+              }}   />
+         </div>
+         <div className="content-container">
+            <button className="button_secondary" onClick={  (e)=>{
+            props.dispatch(start_remove_expense( { id:props.expenses.id /*props.match.params.id*/ }) ) 
+            props.history.push('/') } } >Remove Expense</button>
+         </div>
    </div>
    )
 }

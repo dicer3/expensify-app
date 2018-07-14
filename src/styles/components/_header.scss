@@ -1,0 +1,21 @@
+.header_style
+{
+    background-color: $dark-blue;
+    
+}
+.header_title
+{
+    color: white;
+    text-decoration: none;//removes underlines under the links
+    .h1 {
+        margin-top: 0 ;
+    }
+
+}
+.header_content
+{
+    display: flex;
+    justify-content:  space-between;
+    align-items: center;
+    padding: $s-size 0;
+}

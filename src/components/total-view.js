@@ -3,13 +3,19 @@ import expense_total from '../selectors/expenses-total';
 import {connect} from 'react-redux';
 import React from 'react';
 import numeral from 'numeral';
+import {Link} from 'react-router-dom'; 
 const Expenselist=(props)=>
 {    const expense_word=props.expenses.length===1?"expense":"expenses";
      const money=numeral(props.total/100).format('$0.00')
      return(
-      <div>
-       {props.expenses.length>0?<h2>Viewing {props.expenses.length} {expense_word} totallling {money}</h2>:<h3>No Expenses</h3>}    
-      </div>
+     <div className="page-header">
+         <div className="content-container">
+            {<h2 className="page-header-title" >Viewing <span>{props.expenses.length}</span> {expense_word} totalling <span>{money}</span></h2>}    
+           <div className="page-header-action">
+               <Link className="button_style" to="/create">Add Expense</Link>
+           </div>
+        </div>
+     </div>  
     ); 
 };
 const map_state_to_props=(state1)=>

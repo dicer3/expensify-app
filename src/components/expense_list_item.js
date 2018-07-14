@@ -1,7 +1,7 @@
 import React from 'react';
 //import { remove_expense } from '../actions/expenses';
 //import {connect} from 'react-redux';
-import {NavLink} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import moment from 'moment';
 import numeral from 'numeral';
 /*import {connect} from 'react-redux';
@@ -27,11 +27,14 @@ export default connect(using_map)(expense_value);*/
 );*/
 
 const each_item=({id,description,amount,createdate})=>
-(   <div>
-    <NavLink to={`/edit/${id}`} activeClassName="is_active">{description}</NavLink>
-      <p >{numeral(amount/100).format('$0,0.00')} -
-      {moment(createdate).format('MMMM Do,YYYY')}</p>
-    </div>  
+(  
+    <Link className="list-item" to={`/edit/${id}`}> 
+      <div>
+         <h3 className="list-item-title">{description}</h3>
+        <span className="list-item-subtitle"> {moment(createdate).format('MMMM Do,YYYY')}</span>
+     </div>   
+       <h3 className="list-item-data"> {numeral(amount/100).format('$0,0.00')} </h3>
+    </Link>
 );
 export default each_item;
 //export default connect()(each_item);

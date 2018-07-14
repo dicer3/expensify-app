@@ -1,0 +1,24 @@
+.box-layout
+{
+    background: url('/images/_bg.jpg');
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box{
+    border-radius: 3px;
+    background:fade-out(white,.15);
+    text-align: center;
+    width: 25rem;
+    padding: $l-size $m-size;
+    opacity:0.8;
+}
+.title
+{
+    margin: 0;
+    margin-bottom: $m-size;
+    line-height: 1;
+}

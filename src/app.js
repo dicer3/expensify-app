@@ -10,6 +10,7 @@ import {start_set_expense} from './actions/expenses';
 import {login,logout} from './actions/auth';
 import 'react-dates/lib/css/_datepicker.css';
 import {firebase} from './firebase/firebase';
+import Loading_page from './components/loading.js';
 
 const store=Config_store;
 /*store.subscribe(()=>
@@ -37,7 +38,7 @@ const render_app=()=>
     }
        
 }
-ReactDOM.render(<p>loading..</p>,approot);
+ReactDOM.render(<Loading_page/>,approot);
 
 store.dispatch(start_set_expense()).then(()=>
 {  console.log('is this comming here');
